@@ -1,0 +1,2 @@
+# CSS Table v Flexbox performance test
+A couple of test pages to measure the performance difference between display: table and display: flex is modern browsers. See [http://benfrain.com](http://benfrain.com) for more information.
