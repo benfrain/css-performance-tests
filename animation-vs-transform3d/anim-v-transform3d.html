@@ -1,0 +1,189 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<title>Animation Vs transform3d</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<style>
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.wrap {
+	display: block;
+	width: 48%;
+	float: left;
+	position: relative;
+}
+
+#animate,
+#transform {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.tbl {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 5rem;
+	background: #bbb;
+}
+
+.titlewrap {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 5rem;
+	background-color: #333;
+}
+
+.cell {
+	display: table-cell;
+	border-spacing: 3px;
+	border: 2px solid #aaa;
+}
+
+.title {
+	font-size: 3em;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	color: #efefef;
+}
+
+.tbl.anim {
+	height: 5rem;
+	-webkit-animation: animIn 1s forwards;
+	animation: animIn 1s forwards;
+}
+.is-Animated .tbl.anim {
+	-webkit-animation: anim 1s forwards;
+	animation: anim 1s forwards;
+}
+
+@-webkit-keyframes anim {
+	from {
+		height: 0;
+	}
+
+	to {
+		max-height: 5rem;
+	}
+}
+
+@keyframes anim {
+	from {
+		height: 0;
+	}
+
+	to {
+		max-height: 5rem;
+	}
+}
+@-webkit-keyframes animIn {
+	from {
+		height: 5rem;
+	}
+
+	to {
+		height: 0px;
+	}
+}
+@keyframes animIn {
+	from {
+		height: 5rem;
+	}
+
+	to {
+		height: 0px;
+	}
+}
+.transformtitle {
+	z-index: 10;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	position: relative;
+}
+
+.transform3d {
+	position: relative;
+	-webkit-transform: translate3d(0, -5rem, 0);
+	transform: translate3d(0, -5rem, 0);
+	z-index: -1;
+	-webkit-transition: -webkit-transform 1s;
+	transition: transform 1s;
+}
+.is-Transformed .transform3d {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+</style>
+</head>
+<body>
+<div class="wrap animwrap">
+	<p>A quick experiment is rendering/paint performance. Open Chrome Dev tools and enable 'Show paint rectangles' then click the button on each example. Animate has to paint in and out where as transform gets its paints 'for free'.</p>
+	<div class="slat anim titlewrap">
+		<div class="title">
+			Animation
+			<button id="animate">click for animation</button>
+		</div>
+	</div>
+	<div class="slat tbl anim">
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+	</div>
+</div>
+
+
+<div class="wrap transformwrap">
+
+	<div class="slat transform titlewrap">
+		<div class="title transformtitle">
+			transform3d
+			<button id="transform">click for transform</button>
+		</div>
+	</div>
+	<div class="slat tbl transform3d">
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+	</div>
+</div>
+
+
+<script src="http://benfrain.com/js/libs/jquery-1.10.2.min.js"></script>
+<script>
+$('#animate').on("click", function(){
+		$('.animwrap').toggleClass('is-Animated');
+		});
+
+$('#transform').on("click", function() {
+		$('.transformwrap').toggleClass('is-Transformed');
+		});
+</script>
+
+
+</body>
+</html>
