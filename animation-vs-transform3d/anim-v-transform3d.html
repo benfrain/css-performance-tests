@@ -13,9 +13,8 @@
 }
 
 .wrap {
-	display: block;
+	display: inline-table;
 	width: 48%;
-	float: left;
 	position: relative;
 }
 
@@ -127,8 +126,9 @@
 </style>
 </head>
 <body>
+<div>A quick experiment is rendering/paint performance. Open Chrome Dev tools and enable 'Show paint rectangles' then click the button on each example. Animate has to paint in and out where as transform gets its paints 'for free'.</div>
 <div class="wrap animwrap">
-	<p>A quick experiment is rendering/paint performance. Open Chrome Dev tools and enable 'Show paint rectangles' then click the button on each example. Animate has to paint in and out where as transform gets its paints 'for free'.</p>
+
 	<div class="slat anim titlewrap">
 		<div class="title">
 			Animation
