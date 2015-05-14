@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<title>benfrain.com performance test</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			.a-section {
+				height: 30px;
+				width: 100%;
+				background-color: wheat;
+				border-bottom: 1px solid #f90;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>HTML test. Everything below is made via JS</h1>
+		<script>
+			;(function TimeThisMother() {
+				window.onload = function(){
+					setTimeout(function(){
+					var t = performance.timing;
+						for (var index = 0; index < 200000; index++) {
+							var makeDiv = document.createElement("section");
+							makeDiv.classList.add('a-section');
+							makeDiv.textContent = 'this is section number ' + index;
+							document.body.appendChild(makeDiv);
+						}
+						console.log("Speed of creation is: " + ( (t.loadEventEnd - t.responseEnd) / 1000) + " seconds");
+					}, 0);
+				};
+			})();
+		</script>
+	</body>
+</html>
